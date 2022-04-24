@@ -10,6 +10,8 @@ import racingcar.strategy.MovementStrategy;
 public class Players {
 
     private static final int INITIAL_DISTANCE = 0;
+    private static final String PLAYER_DELIMITER = ":" ;
+    private static final String SCORE_DELIMITER = ";" ;
     private final List<Car> players;
 
     public Players(String userNames) {
@@ -53,7 +55,7 @@ public class Players {
         List<String> playersList = firstPlacePlayers();
         List<Name> playerNames = new ArrayList<>();
         for (String player : playersList) {
-            playerNames.add(new Name(player.split(":")[0]));
+            playerNames.add(new Name(player.split(PLAYER_DELIMITER)[0]));
         }
 
         return playerNames;
@@ -62,7 +64,7 @@ public class Players {
     public String currentScores() {
         StringBuilder sb = new StringBuilder();
         for (Car car : players) {
-            sb.append(car.showResult()).append(";");
+            sb.append(car.showResult()).append(SCORE_DELIMITER);
         }
         return sb.toString();
     }
