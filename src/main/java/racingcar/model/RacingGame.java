@@ -7,6 +7,8 @@ import racingcar.strategy.MovementStrategy;
 
 public class RacingGame {
     public static final String NEW_LINE = "\n" ;
+    public static final String WINNER_DELIMITER = "," ;
+    public static final int LAST_INDEX = 1;
     private final Players players;
     private final int gameCount;
     private final MovementStrategy movementStrategy;
@@ -32,8 +34,8 @@ public class RacingGame {
 
     public String totalScoreBoards() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < gameCount; i++) {
-            sb.append(showScoreBoard(i)).append(NEW_LINE);
+        for (int loop = 0; loop < gameCount; loop++) {
+            sb.append(showScoreBoard(loop)).append(NEW_LINE);
         }
         return sb.toString();
     }
@@ -45,8 +47,13 @@ public class RacingGame {
     public String winnerList() {
         StringBuilder sb = new StringBuilder();
         for (Name name : players.firstPlayerNames()) {
-            sb.append(name.getName()).append(NEW_LINE);
+            sb.append(name.getName()).append(WINNER_DELIMITER);
         }
+        deleteLastDelimiter(sb);
         return sb.toString();
+    }
+
+    private void deleteLastDelimiter(StringBuilder sb) {
+        sb.deleteCharAt(sb.length() - LAST_INDEX);
     }
 }
