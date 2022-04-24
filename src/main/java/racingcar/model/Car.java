@@ -5,16 +5,12 @@ import racingcar.model.primitive.Name;
 import racingcar.strategy.MovementStrategy;
 
 public class Car {
-    private Name name;
-    private Distance distance;
+    private final Name name;
+    private final Distance distance;
 
     public Car(String name, int initialDistance) {
-        try {
             this.name = new Name(name);
             this.distance = new Distance(initialDistance);
-        } catch (IllegalArgumentException ie) {
-            System.out.println("[ERROR]: 입력된 값에 문제가 있습니다.");
-        }
     }
 
     public void move(MovementStrategy movementStrategy) {

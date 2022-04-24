@@ -1,23 +1,13 @@
 package racingcar.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class CarTest {
-
-    private final PrintStream standardOut = System.out;
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-
-    @BeforeEach
-    public void setUp() {
-        System.setOut(new PrintStream(outputStreamCaptor));
-    }
 
     @ParameterizedTest
     @CsvSource(value = {"Jane, 0, Jane:0", "Steve, 1, Steve:1"})
@@ -32,8 +22,11 @@ class CarTest {
     @CsvSource(value = {"Jeremy, 0", "Jennifer, 1"})
     @DisplayName("이름 길이가 5자 이상일 때, 똑같이 예외 발생하는 지 확인")
     void carInstanceInitializationFailedBecauseNameLengthIsOver5(String name, int initial) {
-        Car car = new Car(name, initial);
-        assertThat(outputStreamCaptor.toString()).contains("[ERROR]");
+        assertThatThrownBy(
+                () -> new Car(name, initial)
+        ).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]")
+        ;
     }
 
     @ParameterizedTest
