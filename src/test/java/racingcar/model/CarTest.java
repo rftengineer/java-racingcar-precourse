@@ -29,20 +29,20 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"Jane, 0, 4, Jane: 1", "Steve, 3, 5, Steve: 4"})
+    @CsvSource(value = {"Jane, 0, Jane: 1", "Steve, 3, Steve: 4"})
     @DisplayName("move method 파라미터에 4 이상의 값이 들어갈 경우, 전진거리 증가")
-    void carInitAndMoveForwardWithNumberOver4(String name, int initial, int decision, String expected) {
+    void carInitAndMoveForwardWithNumberOver4(String name, int initial, String expected) {
         Car car = new Car(name, initial);
-        car.move(decision);
+        car.move(() -> true);
         assertThat(car.showResult()).isEqualTo(expected);
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"Jane, 0, 3, Jane: 0", "Steve, 3, 2, Steve: 3"})
+    @CsvSource(value = {"Jane, 0, Jane: 0", "Steve, 3, Steve: 3"})
     @DisplayName("move method 파라미터에 3 이하의 값이 들어갈 경우, 전진거리 증가 없음")
-    void carInitAndNotMoveForwardWithNumberUnder4(String name, int initial, int decision, String expected) {
+    void carInitAndNotMoveForwardWithNumberUnder4(String name, int initial, String expected) {
         Car car = new Car(name, initial);
-        car.move(decision);
+        car.move(() -> false);
         assertThat(car.showResult()).isEqualTo(expected);
     }
 }

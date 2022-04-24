@@ -2,6 +2,7 @@ package racingcar.model;
 
 import racingcar.model.primitive.Distance;
 import racingcar.model.primitive.Name;
+import racingcar.strategy.MovementStrategy;
 
 public class Car {
     private final Name name;
@@ -12,8 +13,8 @@ public class Car {
         this.distance = new Distance(initialDistance);
     }
 
-    public void move(int decision) {
-        if (decision >= 4) {
+    public void move(MovementStrategy movementStrategy) {
+        if (movementStrategy.isMovingCar()) {
             distance.add();
         }
     }
