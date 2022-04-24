@@ -6,6 +6,7 @@ import racingcar.model.primitive.Name;
 import racingcar.strategy.MovementStrategy;
 
 public class RacingGame {
+    public static final String NEW_LINE = "\n" ;
     private final Players players;
     private final int gameCount;
     private final MovementStrategy movementStrategy;
@@ -19,7 +20,7 @@ public class RacingGame {
     }
 
     public void playGames() {
-        for(int loop = 0; loop < gameCount; loop++) {
+        for (int loop = 0; loop < gameCount; loop++) {
             playGame();
         }
     }
@@ -31,8 +32,8 @@ public class RacingGame {
 
     public String totalScoreBoards() {
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < gameCount; i++) {
-            sb.append(showScoreBoard(i)).append("\n");
+        for (int i = 0; i < gameCount; i++) {
+            sb.append(showScoreBoard(i)).append(NEW_LINE);
         }
         return sb.toString();
     }
@@ -43,7 +44,9 @@ public class RacingGame {
 
     public String winnerList() {
         StringBuilder sb = new StringBuilder();
-        players.firstPlayerNames().forEach((value) -> sb.append(value.getName()).append("\n"));
+        for (Name name : players.firstPlayerNames()) {
+            sb.append(name.getName()).append(NEW_LINE);
+        }
         return sb.toString();
     }
 }
