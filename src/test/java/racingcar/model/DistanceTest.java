@@ -17,7 +17,8 @@ class DistanceTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"1, 2, 3", "2, 4, 6"})
+    @CsvSource(value = {"1, 2, 3","2, 4, 6"})
+    @DisplayName("거리 값 증가 메서드 add 구현 테스트")
     void increaseDistanceWithAddMethod(int initial, int loopCnt, int expected) {
         Distance distance = new Distance(initial);
         for(int loop = 0; loop < loopCnt; loop++){

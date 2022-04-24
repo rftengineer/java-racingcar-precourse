@@ -8,7 +8,7 @@ public class Distance {
     }
 
     public int getValue() {
-        return 0;
+        return distance;
     }
 
     public void add() {
