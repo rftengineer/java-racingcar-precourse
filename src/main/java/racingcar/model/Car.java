@@ -1,5 +1,8 @@
 package racingcar.model;
 
+import racingcar.model.primitive.Distance;
+import racingcar.model.primitive.Name;
+
 public class Car {
     private final Name name;
     private final Distance distance;
