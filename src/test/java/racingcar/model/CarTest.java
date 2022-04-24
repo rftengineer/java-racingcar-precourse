@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 class CarTest {
 
     @ParameterizedTest
-    @CsvSource(value = {"Jane, 0, Jane: 0", "Steve, 1, Steve: 1"})
+    @CsvSource(value = {"Jane, 0, Jane:0", "Steve, 1, Steve:1"})
     @DisplayName("게임에 이용할 객체 Car에 대한 initialization 테스트")
     void carInstanceInitializationAndTest(String name, int initial, String expected) {
         Car car = new Car(name, initial);
@@ -29,7 +29,7 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"Jane, 0, Jane: 1", "Steve, 3, Steve: 4"})
+    @CsvSource(value = {"Jane, 0, Jane:1", "Steve, 3, Steve:4"})
     @DisplayName("move method 파라미터에 4 이상의 값이 들어갈 경우, 전진거리 증가")
     void carInitAndMoveForwardWithNumberOver4(String name, int initial, String expected) {
         Car car = new Car(name, initial);
@@ -38,7 +38,7 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"Jane, 0, Jane: 0", "Steve, 3, Steve: 3"})
+    @CsvSource(value = {"Jane, 0, Jane:0", "Steve, 3, Steve:3"})
     @DisplayName("move method 파라미터에 3 이하의 값이 들어갈 경우, 전진거리 증가 없음")
     void carInitAndNotMoveForwardWithNumberUnder4(String name, int initial, String expected) {
         Car car = new Car(name, initial);

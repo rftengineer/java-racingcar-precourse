@@ -19,8 +19,17 @@ public class Car {
         }
     }
 
+    public String showPrimitiveValueWithParam(String data) {
+        if(data.equals("Name")) {
+            return name.getName();
+        }
+        if(data.equals("Distance")) {
+            return String.valueOf(distance.getValue());
+        }
+        return "";
+    }
     public String showResult() {
-        return name.getName() + ": " + distance.getValue();
+        return name.getName() + ":" + distance.getValue();
     }
 
 }
