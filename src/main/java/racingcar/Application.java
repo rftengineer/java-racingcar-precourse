@@ -2,6 +2,7 @@ package racingcar;
 
 import racingcar.model.Players;
 import racingcar.model.RacingGame;
+import racingcar.model.primitive.GameCount;
 import racingcar.strategy.RacingCarGameStrategy;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -9,7 +10,8 @@ import racingcar.view.OutputView;
 public class Application {
     private static boolean keepGoing = false;
     private static Players players;
-    private static int gameCount;
+    private static GameCount gameCount;
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         initPlayersWithValidation();
@@ -22,13 +24,13 @@ public class Application {
 
     private static void initGameCountWithValidation() {
         initLoopCondition();
-        while(!keepGoing) {
-            gameCount = initGameCount();
+        while (!keepGoing) {
+            gameCount = new GameCount(initGameCount());
         }
     }
 
     private static int initGameCount() {
-        try{
+        try {
             keepGoing = true;
             return Integer.parseInt(InputView.askQuestion("2"));
         } catch (NumberFormatException nbe) {
@@ -40,7 +42,7 @@ public class Application {
 
     private static void initPlayersWithValidation() {
         initLoopCondition();
-        while(!keepGoing) {
+        while (!keepGoing) {
             players = initPlayers();
         }
     }
@@ -53,7 +55,7 @@ public class Application {
         try {
             keepGoing = true;
             return new Players(InputView.askQuestion("1"));
-        } catch(IllegalArgumentException illegalArgumentException) {
+        } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println("[ERROR]: 사용자 이름은 5자 이하여야 합니다.");
             keepGoing = false;
         }

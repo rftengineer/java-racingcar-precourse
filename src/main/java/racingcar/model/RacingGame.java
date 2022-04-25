@@ -2,6 +2,7 @@ package racingcar.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import racingcar.model.primitive.GameCount;
 import racingcar.model.primitive.Name;
 import racingcar.strategy.MovementStrategy;
 
@@ -10,11 +11,11 @@ public class RacingGame {
     public static final String WINNER_DELIMITER = "," ;
     public static final int LAST_INDEX = 1;
     private final Players players;
-    private final int gameCount;
+    private final GameCount gameCount;
     private final MovementStrategy movementStrategy;
     private final List<String> scoreBoards;
 
-    public RacingGame(Players players, int gameCount, MovementStrategy movementStrategy) {
+    public RacingGame(Players players, GameCount gameCount, MovementStrategy movementStrategy) {
         this.players = players;
         this.gameCount = gameCount;
         this.movementStrategy = movementStrategy;
@@ -22,7 +23,7 @@ public class RacingGame {
     }
 
     public void playGames() {
-        for (int loop = 0; loop < gameCount; loop++) {
+        for (int loop = 0; loop < gameCount.getValue(); loop++) {
             playGame();
         }
     }
@@ -34,7 +35,7 @@ public class RacingGame {
 
     public String totalScoreBoards() {
         StringBuilder sb = new StringBuilder();
-        for (int loop = 0; loop < gameCount; loop++) {
+        for (int loop = 0; loop < gameCount.getValue(); loop++) {
             sb.append(showScoreBoard(loop)).append(NEW_LINE);
         }
         return sb.toString();
